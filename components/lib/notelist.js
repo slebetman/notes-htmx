@@ -18,7 +18,7 @@ const notelist = component.get('/notelist', async ({ session }) => {
 			</span>
 			New Note
 		</button>
-		<form class="sortable" hx-post="/sort" hx-trigger="end">
+		<form class="sortable" hx-post="/sort" hx-trigger="end" hx-target="#note-list" hx-swap="outerHTML">
 			$${list.map((note) => sticky.html(note)).join('')}
 		</form>
 	</div>
@@ -34,11 +34,9 @@ const sort = component.post('/sort', async ({ session, notes }, hx) => {
 		index
 	}))
 
-	hx.set('HX-Reswap', 'none');
-
 	await Promise.all(queries);
 
-	return '';
+	return notelist.html({ session });
 })
 
 const style = css`
