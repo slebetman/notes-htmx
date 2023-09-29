@@ -46,7 +46,8 @@ components.init(app, COMPONENTS_DIR, {
 		"https://unpkg.com/htmx.org/dist/ext/remove-me.js",
 		"/static/color-picker.js",
 		"/static/sort.js",
-	]
+	],
+	favicon : '/static/logo24.png'
 }).then(() => {
 	app.use((req, res) => {
 		console.log('404: Not Found');
