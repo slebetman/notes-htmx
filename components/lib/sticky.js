@@ -10,6 +10,7 @@ const sticky = component.get('/notes/sticky',({ id, color, title, content }) => 
 		hx-get="/note/view/${id}"
 		hx-target="#content"
 		hx-trigger="dblclick"
+		hx-swap="innerHtml"
 		title="Double click to view"
 	>
 		<input type="hidden" name="notes" value="${id}">
