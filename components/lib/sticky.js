@@ -12,6 +12,7 @@ const sticky = component.get('/notes/sticky',({ id, color, title, content }) => 
 		hx-trigger="dblclick"
 		title="Double click to view"
 	>
+		<input type="hidden" name="notes" value="${id}">
 		<div class="delete-btn"
 			hx-delete="/notes/sticky/${id}"
 			hx-target="#note-${id}"

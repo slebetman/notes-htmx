@@ -42,8 +42,10 @@ components.init(app, COMPONENTS_DIR, {
 		"/static/notes.css",
 	],
 	js : [
+		"https://unpkg.com/sortablejs@1.15.0/Sortable.min.js",
 		"https://unpkg.com/htmx.org/dist/ext/remove-me.js",
-		"/static/color-picker.js"
+		"/static/color-picker.js",
+		"/static/sort.js",
 	]
 }).then(() => {
 	app.use((req, res) => {

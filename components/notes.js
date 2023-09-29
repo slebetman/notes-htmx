@@ -6,7 +6,7 @@ const login = require('./lib/login');
 const main = component.get('/', async ({ session }, hx) => {
 	const user = session.user;
 	let logout = '';
-
+	
 	hx.set('HX-Refresh', 'true');
 
 	if (user) {
@@ -37,10 +37,12 @@ const main = component.get('/', async ({ session }, hx) => {
 	</div>
 
 	<div id="content">
-		$${user ? await noteList.html({ session }) : login.get.html({ session })}
+		$${user ? await noteList.notelist.html({ session }) : login.get.html({ session })}
 	</div>
 	`;
 });
+
+
 
 const logout = component.get('/logout', async ({ session }, { redirect }) => {
 	delete session.user;

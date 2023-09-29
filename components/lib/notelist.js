@@ -3,9 +3,11 @@ const { html, css } = require('express-htmx-components/tags');
 const { sticky } = require('./sticky');
 const db = require('../../lib/db');
 
-module.exports = component.get('/notelist', async ({ session }) => {
+const notelist = component.get('/notelist', async ({ session }) => {
 	const user = session.user;
-	const list = await db('notes').where({ user: user.id }).orderBy(['index', 'id']);
+	const list = await db('notes')
+		.where({ user: user.id })
+		.orderByRaw('`index` nulls last , `id`');
 
 	return html`
 	<div id="note-list">
@@ -16,12 +18,28 @@ module.exports = component.get('/notelist', async ({ session }) => {
 			</span>
 			New Note
 		</button>
-		<div>
+		<form class="sortable" hx-post="/sort" hx-trigger="end">
 			$${list.map((note) => sticky.html(note)).join('')}
-		</div>
+		</form>
 	</div>
 	`;
 });
+
+const sort = component.post('/sort', async ({ session, notes }, hx) => {
+	const user = session.user;
+	const queries = notes.map((id, index) => db('notes').where({
+		id,
+		user: user.id
+	}).update({
+		index
+	}))
+
+	hx.set('HX-Reswap', 'none');
+
+	await Promise.all(queries);
+
+	return '';
+})
 
 const style = css`
 	#note-list .stickies {
@@ -96,3 +114,8 @@ const style = css`
 		}
 	}
 `;
+
+module.exports = {
+	notelist,
+	sort,
+}
