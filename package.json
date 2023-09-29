@@ -1,0 +1,29 @@
+{
+  "name": "notes-htmx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --ignore sessions ./server.js",
+    "start": "./server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config-default-cjson": "^1.0.2",
+    "express": "^4.18.2",
+    "express-compress": "^1.0.0",
+    "express-htmx-components": "^1.1.0",
+    "express-session": "^1.17.3",
+    "knex": "^2.5.1",
+    "markdown-it": "^13.0.2",
+    "session-file-store": "^1.5.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
