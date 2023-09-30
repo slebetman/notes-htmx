@@ -19,6 +19,7 @@ const sticky = component.get('/notes/sticky',({ id, color, title, content }) => 
 			hx-target="#note-${id}"
 			hx-swap="none"
 			hx-confirm="Delete this note?"
+			hx-params="none"
 		>
 			×
 		</div>
