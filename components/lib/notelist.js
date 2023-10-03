@@ -32,7 +32,7 @@ const notelist = component.use('/notelist', async ({ session, q }) => {
 				placeholder="Search"
 				hx-get="/notelist"
 				hx-trigger="keyup changed delay:200ms, search" 
-       			hx-target="#content"
+       			hx-target="closest #note-list"
 				hx-swap="morphdom"
 				value="${q}"
 			>
