@@ -44,6 +44,7 @@ components.init(app, COMPONENTS_DIR, {
 	js : [
 		"https://unpkg.com/sortablejs@1.15.0/Sortable.min.js",
 		"https://unpkg.com/htmx.org/dist/ext/remove-me.js",
+		"https://unpkg.com/htmx.org/dist/ext/morphdom-swap.js",
 		"/static/color-picker.js",
 		"/static/sort.js",
 	],

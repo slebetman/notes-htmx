@@ -3,14 +3,23 @@ const { html, css } = require('express-htmx-components/tags');
 const { sticky } = require('./sticky');
 const db = require('../../lib/db');
 
-const notelist = component.get('/notelist', async ({ session }) => {
+const notelist = component.use('/notelist', async ({ session, q }) => {
 	const user = session.user;
-	const list = await db('notes')
+	let query = db('notes')
 		.where({ user: user.id })
 		.orderByRaw('`index` nulls last , `id`');
 
+	if (q) {
+		query = query.andWhere(function () {
+			this.where('content', 'like', `%${q}%`)
+				.orWhere('title', 'like', `%${q}%`)
+		});
+	}
+
+	const list = await query;
+
 	return html`
-	<div id="note-list">
+	<div id="note-list" hx-ext="morphdom-swap">
 		<style>${style}</style>
 		<button id="create" hx-get="/note/edit/new" hx-target="#content">
 			<span class="material-icons-outlined">
@@ -18,6 +27,16 @@ const notelist = component.get('/notelist', async ({ session }) => {
 			</span>
 			New Note
 		</button>
+		<div id="search">
+			<input type="text" name="q" id="q"
+				placeholder="Search"
+				hx-get="/notelist"
+				hx-trigger="keyup changed delay:200ms, search" 
+       			hx-target="#content"
+				hx-swap="morphdom"
+				value="${q}"
+			>
+		</div>
 		<form class="sortable" hx-post="/sort" hx-trigger="end" hx-target="#note-list" hx-swap="outerHTML">
 			$${list.map((note) => sticky.html(note)).join('')}
 		</form>
@@ -102,6 +121,18 @@ const style = css`
 		padding-left: 20px;
 	}
 
+	#search {
+		position: absolute;
+		top: 16px;
+		left: 200px;
+	}
+
+	#search input {
+		padding: 8px 16px;
+		border-radius: 12px;
+		border: 1px solid #ccc;
+		width: calc( 100vw - 320px );
+	}
 
 	@media (max-device-width: 1024px) {
 		#note-list .stickies {
