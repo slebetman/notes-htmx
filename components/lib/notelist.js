@@ -37,7 +37,11 @@ const notelist = component.use('/notelist', async ({ session, q }) => {
 				value="${q}"
 			>
 		</div>
-		<form class="sortable" hx-post="/sort" hx-trigger="end" hx-target="#note-list" hx-swap="outerHTML">
+		<form class="sortable" hx-post="/sort"
+			hx-trigger="end"
+			hx-target="#note-list"
+			hx-swap="outerHTML"
+		>
 			$${list.map((note) => sticky.html(note)).join('')}
 		</form>
 	</div>
