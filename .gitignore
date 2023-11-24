@@ -1,4 +1,5 @@
 node_modules
-test.db
+*.db
 package-lock.json
 sessions
+config.json
