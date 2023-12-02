@@ -68,6 +68,7 @@ const editor = component.get('/note/edit', ({ id, title, color, content }) => {
 	return html`
 		<div id="note">
 			<style>${style}</style>
+			<div class="full-spinner"></div>
 			<form hx-post="/note/edit/${id}">
 				<div class="input-group">
 					<input type="text" id="title"

@@ -41,11 +41,10 @@ div.htmx-request .content,
 
 .sticky-spinner,
 .full-spinner {
-	display: flex;
+	display: none;
     align-items: center;
 	position: absolute;
     justify-content: center;
-	opacity: 0;
 }
 .sticky-spinner {
     width: 170px;
@@ -57,7 +56,7 @@ div.htmx-request .content,
 }
 .htmx-request .sticky-spinner,
 .htmx-request .full-spinner {
-	opacity: 1;
+	display: flex;
 }
 .full-spinner:after,
 .sticky-spinner:after {
