@@ -33,6 +33,53 @@ th {
 	margin-right: 5px;
 }
 
+
+div.htmx-request .content,
+.htmx-request #content .input-group {
+	opacity: 0.1;
+}
+
+.sticky-spinner,
+.full-spinner {
+	display: flex;
+    align-items: center;
+	position: absolute;
+    justify-content: center;
+	opacity: 0;
+}
+.sticky-spinner {
+    width: 170px;
+    height: 200px;
+}
+.full-spinner {
+    width: calc(100% - 120px);
+    height: calc(100vh - 200px);
+}
+.htmx-request .sticky-spinner,
+.htmx-request .full-spinner {
+	opacity: 1;
+}
+.full-spinner:after,
+.sticky-spinner:after {
+	content: " ";
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin: 8px;
+	border-radius: 50%;
+	border: 6px solid #333;
+	border-color: #333 transparent #333 transparent;
+	animation: spinner 1.2s linear infinite;
+}
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 @media (max-device-width: 1024px) {
 	button,
 	input {

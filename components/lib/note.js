@@ -20,6 +20,7 @@ function goto (...path) {
 	return `
 		hx-get="${path.join('/')}"
 		hx-target="#content"
+		hx-indicator="body"
 	`
 }
 
@@ -31,6 +32,7 @@ const viewer = component.get('/note/view', ({ id, title, color, content }) => {
 	return html`
 		<div id="note">
 			<style>${style}</style>
+			<div class="full-spinner"></div>
 			<div class="input-group" $${gotoEditor(id)} title="Double click to edit">
 				<h3>${title}</h3>
 			</div>
