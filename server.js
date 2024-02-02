@@ -8,6 +8,7 @@ const compress = require('express-compress').compress;
 const components = require('express-htmx-components');
 const conf = require('./lib/config');
 const requestLogger = require('./lib/request-logger');
+const loginMiddleware = require('./lib/loginMiddleware');
 
 const app = express();
 
