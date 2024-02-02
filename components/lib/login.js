@@ -24,9 +24,9 @@ function form ({ error }) {
 	`;
 };
 
-const get = component.get('/login', ({ session }, hx) => {
+const get = component.get('/login', async ({ session }, hx) => {
 	if (session.user) {
-		hx.redirect('/');
+		await hx.redirect('/');
 	} else {
 		return form({});
 	}

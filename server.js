@@ -34,7 +34,10 @@ app.use(
 app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: false }));
 app.use(compress({ contentType: /html|js|css/ }));
+
 app.use(requestLogger);
+
+app.use(loginMiddleware);
 
 components.init(app, COMPONENTS_DIR, {
 	css : [
