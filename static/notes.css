@@ -68,7 +68,7 @@ div.htmx-request .content,
 	border-radius: 50%;
 	border: 6px solid #333;
 	border-color: #333 transparent #333 transparent;
-	animation: spinner 1.2s linear infinite;
+	animation: spinner 1.2s linear infinite, pause 200ms linear;
 }
 @keyframes spinner {
 	0% {
@@ -76,6 +76,17 @@ div.htmx-request .content,
 	}
 	100% {
 		transform: rotate(360deg);
+	}
+}
+@keyframes pause {
+	0% {
+		opacity: 0;
+	}
+	99% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
 
